@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Gmailed</string>
+    <string name="call_gmail_api">Call Gmail API</string>
+    <string name="click_the_button_text_button_to">Click the Call Gmail API button to test the API.</string>
+    <string name="progress_description">Calling Gmail API …</string>
+    <string name="permission_rationale">This app needs to access your Google account (via Contacts).</string>
+    <string name="main_error_description">The following error occurred:\n%1$s</string>
+    <string name="main_requires_services">This app requires Google Play Services. Please install Google Play Services on your device and relaunch this app.</string>
+    <string name="main_no_network">No network connection available.</string>
+    <string name="main_no_result">"No results returned."</string>
+
+</resources>
