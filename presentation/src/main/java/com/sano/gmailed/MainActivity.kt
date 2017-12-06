@@ -64,8 +64,7 @@ class MainActivity : Activity(), MainView {
                                             permissions: Array<String>,
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(
-                requestCode, permissions, grantResults, this)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
     override fun checkGooglePlayServices(): Boolean {

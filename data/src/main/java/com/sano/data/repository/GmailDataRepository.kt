@@ -7,6 +7,7 @@ import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.gmail.Gmail
 import com.sano.domain.repository.GmailRepository
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -28,7 +29,9 @@ class GmailDataRepository(initCredential: GoogleAccountCredential, val preferenc
             }
         }
         get() {
-            credential.selectedAccountName = getString(PREF_ACCOUNT_NAME)
+            if(credential.selectedAccountName.isNullOrEmpty()) {
+                credential.selectedAccountName = getString(PREF_ACCOUNT_NAME)
+            }
             return credential.selectedAccountName
         }
 
@@ -47,8 +50,8 @@ class GmailDataRepository(initCredential: GoogleAccountCredential, val preferenc
                 .build()
     }
 
-    override fun getLabels(): Observable<List<String>> {
-        return Observable.fromCallable {
+    override fun getLabels(): Single<List<String>> {
+        return Single.fromCallable {
             val user = "me"
 
             if (mService == null) {

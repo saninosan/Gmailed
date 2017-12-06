@@ -24,10 +24,9 @@ class MainPresenter(var view: MainView, var gmailInteractor: GmailInteractor) {
                     requestLabels()
                 }
             REQUEST_ACCOUNT_PICKER ->
-                if (result && data != null) {
-                    val accountName = data[AccountManager.KEY_ACCOUNT_NAME]
-                    if (accountName != null) {
-                        gmailInteractor.selectedAccountName = accountName
+                if (result) {
+                    data?.get(AccountManager.KEY_ACCOUNT_NAME)?.let {
+                        gmailInteractor.selectedAccountName = it
                         requestLabels()
                     }
                 }
@@ -39,9 +38,7 @@ class MainPresenter(var view: MainView, var gmailInteractor: GmailInteractor) {
     }
 
     fun onChooseAccountPermissionGranted() {
-        val accountName = gmailInteractor.selectedAccountName;
-
-        if (accountName != null) {
+        if (gmailInteractor.selectedAccountName != null) {
             requestLabels()
         } else {
             view.requestAccountPicker(REQUEST_ACCOUNT_PICKER)
